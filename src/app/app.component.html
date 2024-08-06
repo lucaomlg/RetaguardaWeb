@@ -1,0 +1,15 @@
+  <mat-toolbar class="mat-elevation-z1">
+    <button mat-icon-button aria-label="Menu icon" (click)="collapsed.set(!collapsed())">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>{{titulo}}</h1>
+  </mat-toolbar>
+  <mat-sidenav-container autosize>
+    <!-- <mat-sidenav [opened]="isSidenavOpened"  mode="side" [style.width]="sideNavWidth()"> -->
+    <mat-sidenav opened  mode="side" [style.width]="sideNavWidth()">
+      <app-rotas-side-nav [collapsed] = "collapsed()"></app-rotas-side-nav>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

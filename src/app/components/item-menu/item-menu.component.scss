@@ -1,0 +1,16 @@
+$random-hue: random(360);
+
+:host * {
+    transition: all 500ms ease-in-out;
+}
+.menu-item {
+    border-left: 5px solid;
+    cursor: pointer;
+    border-left-color: rgba(0, 0, 0, 0.178);
+
+}
+
+.selected-menu-item {
+    background: gray;
+    border-left-color: hsl($random-hue, 100%, 50%);
+}

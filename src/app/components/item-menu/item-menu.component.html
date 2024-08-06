@@ -1,0 +1,12 @@
+<a mat-list-item 
+class="menu-item"
+[routerLink]="item().recurso"
+routerLinkActive="selected-menu-item"
+#rla="routerLinkActive"
+[activated]="rla.isActive"
+>
+    <mat-icon matListItemIcon>{{item().icone}}</mat-icon>
+    @if (collapsed()) {
+        <span matListItemTitle>{{item().titulo}}</span>
+    }
+</a>

@@ -1,0 +1,17 @@
+<div class="sidenav-header">
+    <img
+    [style.height]="logoHeight()"
+    [style.width]="logoWidth()"
+    src="https://www.abvtex.org.br/relatorio2019/assets/img/logos/090%20Top%20Brands%20Fashion.png">
+    <div class="header-text">
+        @if(sideNavCollapsed())
+        {
+            <h2>Menu</h2>
+        }
+    </div>
+</div>
+<mat-nav-list>
+    @for (item of menuItens(); track item.titulo) {
+      <app-item-menu [item]="item" [collapsed]="!sideNavCollapsed()"></app-item-menu>
+    }
+</mat-nav-list>
