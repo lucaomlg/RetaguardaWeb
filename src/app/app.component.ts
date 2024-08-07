@@ -5,9 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { RotasSideNavComponent } from "./components/rotas-side-nav/rotas-side-nav.component";
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -15,7 +15,7 @@ import { RotasSideNavComponent } from "./components/rotas-side-nav/rotas-side-na
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatListModule, CommonModule, RotasSideNavComponent],
+  imports: [RouterOutlet, MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatListModule, CommonModule, RotasSideNavComponent, NgxSpinnerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

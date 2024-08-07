@@ -1,35 +1,41 @@
 * {
-    box-sizing: border-box;
+    // box-sizing: border-box;
 }
 
 :host {
-    height: 100vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: hsl(random(360), 100%, 50%);;
+    flex-direction: column; // Adicionado para empilhar os componentes verticalmente
+    background-color: hsl(random(360), 100%, 50%);
+}
 
+img {
+    width: auto;
+    height: 100px;
+    margin: 20px 0px 10px 0px;
 }
 
 .login-card {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 10px 10px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
     background-color: #ffffff;
     padding: 10px;
     border-radius: 10px;
-    width: 40%;
-
+    width: 355px;
 }
 
 .login-card input {
     margin: 5px 0;
-    width: 100%;
     background-color: #e2e2e2;
     border: none;
     outline: none;
     padding: 12px 20px;
+    margin: 10px 0px 5px 0px; 
     border-radius: 4px;
 }
 
@@ -40,13 +46,13 @@
     outline: none;
     border-radius: 5px;
     border: none;
-    padding: 8px 15px;
-    width: 100%;
+    padding: 6px;
     cursor: pointer;
+    margin: 5px 0px 20px 0px; 
+    width: 100%;
 }
 
-
 .card-title h1 {
-    font-size: 26px;
+    font-size: 23px;
     font-weight: bold;
 }

@@ -1,12 +1,12 @@
 <div class="login-card">
+    <img src="https://www.abvtex.org.br/relatorio2019/assets/img/logos/090%20Top%20Brands%20Fashion.png">
 
     <div class="card-title">
         <h1>Login</h1>
-        <!-- <span>You don't have an account? <a routerLink="/signup">Sign up</a></span> -->
     </div>
     <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <input name="username" type="username" formControlName="username" placeholder="Usuário">
-        <input type="password" formControlName="password" placeholder="Senha">
-        <button>Submit</button>
+        <input  class="form-control" name="username" type="username" required formControlName="username" placeholder="Usuário">
+        <input class="form-control" type="password" formControlName="password" required  placeholder="Senha">
+        <button>Entrar</button>
     </form>
 </div>

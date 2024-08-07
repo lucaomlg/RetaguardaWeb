@@ -35,7 +35,7 @@ export class RotasSideNavComponent implements OnInit, OnDestroy {
   }
 
   
-  menuItens = signal<MenuItem[]>(NavMenuService.getListaRecursos());
+  menuItens = signal<MenuItem[]>([]);
 
   logoWidth = computed(()=> this.sideNavCollapsed()? '35px' : '100px');
   logoHeight = computed(()=> this.sideNavCollapsed()? 'auto' : 'auto');

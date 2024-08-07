@@ -6,13 +6,23 @@ import { LoginService } from '../../services/login/login.service';
 import { MenuItem } from '../../components/rotas-side-nav/rotas-side-nav.component';
 import { ToastrService } from 'ngx-toastr';
 import { NavMenuService } from '../../services/navMenu/nav-menu.service';
+import { animate, style, transition, trigger } from '@angular/animations';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  animations:[
+    trigger('enter',[
+      transition(':enter',[
+        style({opacity:0, scale:0.7}),
+        animate('400ms ease-in', style({opacity:1, scale:1}))
+      ])
+    ])
+  ]
 })
 export class LoginComponent {
 
@@ -20,7 +30,7 @@ export class LoginComponent {
   router = inject(Router);
   toastr = inject(ToastrService);
   navMenuService = inject(NavMenuService);
-  
+
 
   protected loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -29,19 +39,14 @@ export class LoginComponent {
 
 
 
-   onSubmit() {
+  onSubmit() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       this.loginService.login(this.loginForm.value.username!, this.loginForm.value.password!)
         .subscribe(response => {
-          // Atualize os itens do menu após login bem-sucedido
-          console.log('Depois do subscribe: ', response);
-      
-          if(response.erro)
-            {
-              this.toastr.error(response.Mensagem, 'Erro ao efetuar login');
-              return;
-            }
+          if (response.erro) {
+            return;
+          }
 
           var listaRecursos: MenuItem[] = [];
 
@@ -52,7 +57,7 @@ export class LoginComponent {
             recursosArray.forEach((recurso: any) => {
               listaRecursos.push({
                 icone: 'dashboard',
-                recurso: 'login',
+                recurso: recurso.Link,
                 titulo: recurso.Menu
               });
             });
