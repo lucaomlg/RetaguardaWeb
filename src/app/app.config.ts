@@ -9,6 +9,7 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { LoginService } from './services/login/login.service';
 import { NavMenuService } from './services/navMenu/nav-menu.service';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
+import { AuthService } from './auth/auth.service';
 
 
 
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     importProvidersFrom([BrowserAnimationsModule]),
     LoginService,
-    NavMenuService
+    NavMenuService,
+    AuthService
   ]
 };

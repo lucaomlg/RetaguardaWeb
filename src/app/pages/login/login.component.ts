@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -15,11 +15,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  animations:[
-    trigger('enter',[
-      transition(':enter',[
-        style({opacity:0, scale:0.7}),
-        animate('400ms ease-in', style({opacity:1, scale:1}))
+  animations: [
+    trigger('enter', [
+      transition(':enter', [
+        style({ opacity: 0, scale: 0.7 }),
+        animate('400ms ease-in', style({ opacity: 1, scale: 1 }))
       ])
     ])
   ]
@@ -48,20 +48,61 @@ export class LoginComponent {
             return;
           }
 
-          var listaRecursos: MenuItem[] = [];
+          const listaRecursosPai: MenuItem[] = [];
+          const listaRecursosFilhos: MenuItem[] = [];
+
+
+          const listaRecursos: MenuItem[] = [];
 
           const recursosArray = JSON.parse(response[0].data.recursos);
 
 
           if (Array.isArray(recursosArray)) {
             recursosArray.forEach((recurso: any) => {
-              listaRecursos.push({
+              var item = {
+                id: recurso.Cod_Recurso,
+                idPai: recurso.Cod_Recurso_Pai,
+                icone: 'dashboard',
+                recurso: undefined,
+                titulo: recurso.Menu,
+                filhos: []
+              };
+              if (item.idPai === '00000000-0000-0000-0000-000000000000') {
+                listaRecursosPai.push(item);
+              }
+            });
+
+            recursosArray.forEach((recurso: any) => {
+              var item = {
+                id: recurso.Cod_Recurso,
+                idPai: recurso.Cod_Recurso_Pai,
                 icone: 'dashboard',
                 recurso: recurso.Link,
-                titulo: recurso.Menu
+                titulo: recurso.Menu,
+                filhos: []
+              };
+
+              if (item.idPai !== '00000000-0000-0000-0000-000000000000') {
+                listaRecursosFilhos.push(item);
+              }
+            });
+
+            listaRecursosFilhos.forEach((recursoFilho: any) => {
+
+              listaRecursosPai.forEach((recursoPai: any) => {
+                if (recursoFilho.idPai === recursoPai.id) {
+                  recursoPai.filhos.push(recursoFilho);
+                }
               });
             });
+
+            listaRecursosPai.forEach((recursoPai: any) => {
+              listaRecursos.push(recursoPai);
+            });
+
+
           }
+          console.log(listaRecursos);
 
           NavMenuService.setListaRecursos(listaRecursos);
 

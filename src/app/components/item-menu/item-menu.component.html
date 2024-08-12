@@ -1,12 +1,43 @@
-<a mat-list-item 
-class="menu-item"
-[routerLink]="item().recurso"
-routerLinkActive="selected-menu-item"
-#rla="routerLinkActive"
-[activated]="rla.isActive"
->
-    <mat-icon matListItemIcon>{{item().icone}}</mat-icon>
+<a mat-list-item class="menu-item" 
+[class.ativo] = "recursoFilhoAberto()"
+[routerLink]="item().recurso" (click)="toggleRecursoFilhoAberto()"
+    routerLinkActive="selected-menu-item" #rla="routerLinkActive" [activated]="rla.isActive">
+    <mat-icon [fontSet]="rla.isActive || recursoFilhoAberto() ? 'material-icons':'material-icons-outlined'"
+        matListItemIcon>{{item().icone}}</mat-icon>
     @if (collapsed()) {
-        <span matListItemTitle>{{item().titulo}}</span>
+    <span matListItemTitle>{{item().titulo}}</span>
+    }
+
+    @if(item().filhos)
+    {
+    <span matListItemMeta>
+        @if(recursoFilhoAberto()){
+        <mat-icon>expand_less</mat-icon>
+        }
+        @else {
+        <mat-icon>expand_more</mat-icon>
+        }
+    </span>
     }
 </a>
+
+@if(item().filhos && recursoFilhoAberto()){
+<div @expandirRecursoFilho>
+    @for(filho of item().filhos; track filho.id){
+    <a mat-list-item 
+    class="menu-item" 
+    [class.identado]="collapsed()"
+    [routerLink]="filho.recurso" 
+        (click)="toggleRecursoFilhoAberto()" 
+        routerLinkActive="selected-menu-item" 
+        #rla="routerLinkActive"
+        [activated]="rla.isActive">
+        <mat-icon [fontSet]="rla.isActive ? 'material-icons':'material-icons-outlined'"
+            matListItemIcon>{{filho.icone}}</mat-icon>
+        @if (collapsed()) {
+        <span matListItemTitle>{{filho.titulo}}</span>
+        }
+    </a>
+    }
+</div>
+}

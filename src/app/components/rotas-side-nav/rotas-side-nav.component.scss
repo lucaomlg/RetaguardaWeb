@@ -1,9 +1,13 @@
+:host *{
+    transition: all 200ms ease-in-out;
+}
+
 .sidenav-header {
     padding-top: 15px;
     text-align: center;
 
     >img {
-        border-radius: 3%;
+        border-radius: 1%;
         object-fit: cover;
         margin-bottom: 8px;
     }

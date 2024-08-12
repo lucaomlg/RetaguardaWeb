@@ -1,16 +1,32 @@
-$random-hue: random(360);
 
 :host * {
-    transition: all 500ms ease-in-out;
+    transition: all 200ms ease-in-out;
 }
+
 .menu-item {
-    border-left: 5px solid;
+    display: flex;
+    border-radius: 0%;
+    border-left: 3px solid;
     cursor: pointer;
     border-left-color: rgba(0, 0, 0, 0.178);
 
 }
 
+.ativo{
+    background: rgba(0, 0, 0, 0.04);
+    border-left-color: hsl(245, 95%, 42%);
+}
+
 .selected-menu-item {
-    background: gray;
-    border-left-color: hsl($random-hue, 100%, 50%);
+    background: rgba(0, 0, 0, 0.04);
+    border-left-color: hsl(245, 95%, 42%);
+}
+
+mat-icon {
+    align-self: center;
+}
+
+.identado{
+    transition: all 500ms ease-in-out;
+    --mat-list-list-item-leading-icon-start-space: 48px;
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { LoginService } from '../services/login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,11 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   private tokenInfo: any;
   private headers: HttpHeaders;
+  static isLoggedIn:boolean;
 
   constructor(private http: HttpClient, private router: Router) {
     this.headers = new HttpHeaders();
-    // this.init();
+    AuthService.isLoggedIn = LoginService.isLoggedIn();
   }
 
   setTokenInfo(data: any): void {
@@ -62,8 +64,4 @@ export class AuthService {
     this.headers = new HttpHeaders();
   }
 
-  validateRequest(): Observable<any> {
-    const url = environment.apiUrl + 'Suporte/BuscarInfoCaixa/590'; // Adjust the URL as needed
-    return this.http.get<any>(url, { headers: this.headers });
-  }
 }

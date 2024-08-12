@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class NavMenuService {
 
-  private static listaRecursosSubject = new BehaviorSubject<MenuItem[]>([{ titulo: 'Login', icone: 'dashboard', recurso: 'login' }]);
+  private static listaRecursosSubject = new BehaviorSubject<MenuItem[]>([{ id: '' ,titulo: 'Login', icone: 'supervisor_account', recurso: 'login' }]);
   static listaRecursos$ = NavMenuService.listaRecursosSubject.asObservable();
 
   static setListaRecursos(novosRecursos: MenuItem[]) {

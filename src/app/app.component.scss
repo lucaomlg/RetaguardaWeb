@@ -4,7 +4,7 @@
 $fonte-padrao: "Rubik", sans-serif;
 
 mat-toolbar{
-    background-color: #1976d2;
+    background-color: #000000e2;
     position: relative;
     z-index: 5;
 
@@ -19,13 +19,16 @@ mat-toolbar{
 
 .content {
     padding: 0px;
+    width: 100%;
+    transition: all 200ms ease-in-out;  
 }
 
 mat-sidenav-container {
     height: calc(100vh - 64px);
 }
 
-mat-sidenav{
+mat-sidenav {
+    transition: all 200ms ease-in-out;
     border: #13314e0e;
     border-radius: 0%;
     border-width: 0.5px;

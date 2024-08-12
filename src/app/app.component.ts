@@ -1,5 +1,5 @@
 import { Component, computed, Injectable, signal, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -22,6 +22,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 export class AppComponent {
   titulo = 'Retaguarda';
   collapsed = signal(false);
-  sideNavWidth = computed(() => this.collapsed() ? '65px' : '250px');
+  sideNavWidth = computed(() => this.collapsed() ? '72px' : '250px');
+  constructor(private router: Router) {}
+
+  isLoginRoute(): boolean {
+    return this.router.url === '/login';
+  }
 
 }

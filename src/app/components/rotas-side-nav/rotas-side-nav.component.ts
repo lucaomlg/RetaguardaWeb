@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 
 export type MenuItem =
 {
+  id: string;
+  idPai?: string;
   titulo: string;
   icone: string;
   recurso?: string;  

@@ -11,7 +11,7 @@
     </div>
 </div>
 <mat-nav-list>
-    @for (item of menuItens(); track item.titulo) {
+    @for (item of menuItens(); track item.id) {
       <app-item-menu [item]="item" [collapsed]="!sideNavCollapsed()"></app-item-menu>
     }
 </mat-nav-list>
